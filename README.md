@@ -1,6 +1,7 @@
 # cyscheduler
 
 Creates polls to decide on "meetings" on strawpoll.me
+
 Polls are created:
 - From the next day onwards
 - Every day or only on weekends (Friday, Saturday and Sunday)
