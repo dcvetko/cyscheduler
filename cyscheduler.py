@@ -79,7 +79,7 @@ class StrawPollCreator:
         with urlopen(req) as response:
             poll_response = json.loads(response.read().decode('utf-8'))
             final_url = self.created_poll_url + str(poll_response['id'])
-            print("Poll created: " + final_url)
+            print(final_url)
 
 
 ##########################################################################
@@ -87,14 +87,13 @@ class StrawPollCreator:
 from_date = datetime.date.today()
 from_date += timedelta(days=1)
 
-# Uses some "ugly" defaults for "Among Us" scheduling
 # Weekend = Friday, Saturday, Sunday
 # Weekendtimes for Saturday, Sunday only
 parser = argparse.ArgumentParser(description='Create a new strawpoll meeting')
-parser.add_argument("-t", action="store", dest="title", type=str, default="Among Us")
+parser.add_argument("-t", action="store", dest="title", type=str, default="Poll")
 parser.add_argument("--fullweek", action="store_true", default=False)
-parser.add_argument("--weekdayoptions", nargs="+", default=["19:30 - 22:00 CEST"])
-parser.add_argument("--weekendoptions", nargs="+", default=["14:00 - 17:00 CEST", "19:30 - 22:00 CEST"])
+parser.add_argument("--weekdayoptions", nargs="+", default=["19:30 - 22:00"])
+parser.add_argument("--weekendoptions", nargs="+", default=["14:00 - 17:00", "19:30 - 22:00"])
 parser.add_argument("--repeat", action="store", dest="repeat", type=int, default=6)
 
 args      = parser.parse_args()
