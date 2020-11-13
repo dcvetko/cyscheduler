@@ -85,7 +85,6 @@ class StrawPollCreator:
 ##########################################################################
 
 from_date = datetime.date.today()
-from_date += timedelta(days=1)
 
 # Weekend = Friday, Saturday, Sunday
 # Weekendtimes for Saturday, Sunday only
@@ -95,9 +94,12 @@ parser.add_argument("--fullweek", action="store_true", default=False)
 parser.add_argument("--weekdayoptions", nargs="+", default=["19:30 - 22:00"])
 parser.add_argument("--weekendoptions", nargs="+", default=["14:00 - 17:00", "19:30 - 22:00"])
 parser.add_argument("--repeat", action="store", dest="repeat", type=int, default=6)
+parser.add_argument("--fromdeltadays", action="store", dest="fromdeltadays", type=int, default=1)
 
 args      = parser.parse_args()
 poll_data = PollData(args.title, args.weekdayoptions, args.weekendoptions)
+
+from_date += timedelta(days=args.fromdeltadays)
 
 if args.fullweek:
     poll_data.add_daily_answers(from_date, args.repeat)
